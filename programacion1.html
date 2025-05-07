@@ -157,7 +157,7 @@
           }
 
           data.forEach((pdf) => {
-            const fileName = pdf.path.split("/").pop();
+            const fileName = pdf.url.split("/").pop();
             const date = new Date(pdf.date).toLocaleDateString();
 
             const column = document.createElement("div");
