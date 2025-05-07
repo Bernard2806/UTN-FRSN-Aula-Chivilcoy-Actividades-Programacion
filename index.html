@@ -3,9 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Índice de Materias de Programación - UTN FRSN</title>
-    
-    <link rel="shortcut icon" href="Images\Logos\UTN Favicon.jpg" type="image/x-icon">
+    <title>Actividades de Programación - UTN FRSN</title>
+
+    <link
+      rel="shortcut icon"
+      href="Images/Logos/UTN Favicon.jpg"
+      type="image/x-icon"
+    />
 
     <link
       rel="stylesheet"
@@ -23,11 +27,13 @@
         height: 100%;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 1px solid #ddd;
+        border-radius: 8px;
       }
       .card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
       }
       .card-content {
         flex-grow: 1;
@@ -42,6 +48,9 @@
         max-height: 80px;
         width: auto;
       }
+      .columns.is-multiline {
+        gap: 1.5rem;
+      }
       @media screen and (max-width: 768px) {
         .logo-container {
           flex-direction: column;
@@ -52,22 +61,24 @@
         padding: 2rem 1.5rem;
         margin-top: 2rem;
       }
+      .card-footer-item {
+        font-weight: bold;
+        color: #3273dc;
+      }
+      .card-footer-item:hover {
+        background-color: #f5f5f5;
+      }
     </style>
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero is-primary">
+    <section class="hero is-link is-light">
       <div class="hero-body">
         <div class="container">
           <div class="logo-container">
-            <img
-              src="Images\Logos\UNT Logo.png"
-              alt="Logo UTN"
-              width="auto"
-              height="80"
-            />
+            <img src="Images/Logos/UNT Logo.png" alt="Logo UTN" height="80" />
           </div>
-          <h1 class="title">Índice de Materias de Programación</h1>
+          <h1 class="title">Actividades de Programación</h1>
           <h2 class="subtitle">
             Universidad Tecnológica Nacional - Facultad Regional San Nicolás
           </h2>
@@ -80,28 +91,28 @@
       <div class="container">
         <div class="columns is-multiline">
           <!-- Programación 1 -->
-          <div class="column is-one-third-desktop is-half-tablet">
+          <div
+            class="column is-one-third-desktop is-half-tablet is-full-mobile"
+          >
             <a href="programacion1.html">
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
-                      src="Images\Programación I.jpeg"
+                      src="Images/Programación I.jpeg"
                       alt="Programación 1"
                     />
                   </figure>
                 </div>
                 <div class="card-content">
-                  <div class="content">
-                    <h3 class="title is-4">Programación I</h3>
-                  </div>
+                  <h3 class="title is-4">Programación I</h3>
                 </div>
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-book"></i>
+                      <i class="fas fa-tasks"></i>
                     </span>
-                    Ver material
+                    Ver actividades
                   </span>
                 </footer>
               </div>
@@ -109,7 +120,9 @@
           </div>
 
           <!-- Programación 2 -->
-          <div class="column is-one-third-desktop is-half-tablet">
+          <div
+            class="column is-one-third-desktop is-half-tablet is-full-mobile"
+          >
             <a href="programacion2.html">
               <div class="card">
                 <div class="card-image">
@@ -121,16 +134,14 @@
                   </figure>
                 </div>
                 <div class="card-content">
-                  <div class="content">
-                    <h3 class="title is-4">Programación II</h3>
-                  </div>
+                  <h3 class="title is-4">Programación II</h3>
                 </div>
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-book"></i>
+                      <i class="fas fa-tasks"></i>
                     </span>
-                    Ver material
+                    Ver actividades
                   </span>
                 </footer>
               </div>
@@ -138,7 +149,9 @@
           </div>
 
           <!-- Programación 3 -->
-          <div class="column is-one-third-desktop is-half-tablet">
+          <div
+            class="column is-one-third-desktop is-half-tablet is-full-mobile"
+          >
             <a href="programacion3.html">
               <div class="card">
                 <div class="card-image">
@@ -150,16 +163,14 @@
                   </figure>
                 </div>
                 <div class="card-content">
-                  <div class="content">
-                    <h3 class="title is-4">Programación III</h3>
-                  </div>
+                  <h3 class="title is-4">Programación III</h3>
                 </div>
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-book"></i>
+                      <i class="fas fa-tasks"></i>
                     </span>
-                    Ver material
+                    Ver actividades
                   </span>
                 </footer>
               </div>
@@ -167,7 +178,9 @@
           </div>
 
           <!-- Programación 4 -->
-          <div class="column is-one-third-desktop is-half-tablet">
+          <div
+            class="column is-one-third-desktop is-half-tablet is-full-mobile"
+          >
             <a href="programacion4.html">
               <div class="card">
                 <div class="card-image">
@@ -179,28 +192,29 @@
                   </figure>
                 </div>
                 <div class="card-content">
-                  <div class="content">
-                    <h3 class="title is-4">Programación IV</h3>
-                  </div>
+                  <h3 class="title is-4">Programación IV</h3>
                 </div>
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-book"></i>
+                      <i class="fas fa-tasks"></i>
                     </span>
-                    Ver material
+                    Ver actividades
                   </span>
                 </footer>
               </div>
             </a>
           </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer has-background-light">
       <div class="content has-text-centered">
         <p>
-          <strong>Índice de Materias de Programación</strong> - Universidad
-          Tecnológica Nacional - Facultad Regional San Nicolás - UTN Aula Chivilcoy.
+          <strong>Actividades de Programación</strong> - Universidad Tecnológica
+          Nacional - Facultad Regional San Nicolás - UTN Aula Chivilcoy.
         </p>
       </div>
     </footer>
