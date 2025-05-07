@@ -10,8 +10,7 @@
 
 La carrera se rige por el **Diseño Curricular de la Tecnicatura Superior en Programación**, aprobado por **Ordenanza N° 987**.
 
-👉 Puedes consultar el plan de estudios completo en el siguiente enlace:  
-[Ver diseño curricular (PDF)](https://www.frsn.utn.edu.ar/wp-content/uploads/2024/03/2018-1.pdf)
+👉 Puedes consultar el plan de estudios completo en el siguiente enlace:  [Ver diseño curricular (PDF)](https://www.frsn.utn.edu.ar/wp-content/uploads/2024/03/2018-1.pdf)
 
 ## Acerca de este repositorio
 
