@@ -9,11 +9,22 @@
       type="image/x-icon"
     />
     <style>
+      html,
       body {
+        height: 100%;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
         font-family: Arial, sans-serif;
         background-color: #f2f2f2;
         margin: 0;
         padding: 0;
+      }
+
+      main {
+        flex: 1;
       }
 
       header {
@@ -50,6 +61,7 @@
         transition: transform 0.2s;
         display: flex;
         flex-direction: column;
+        justify-content: center;
       }
 
       .pdf-card:hover {
@@ -57,23 +69,8 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
       }
 
-      .pdf-preview {
-        background-color: #eee;
-        height: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-      }
-
-      .pdf-preview canvas {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
       .pdf-card-content {
-        padding: 0.75rem;
+        padding: 1rem;
         text-align: center;
       }
 
@@ -115,13 +112,8 @@
       <p>&copy; 2025 UTN FRSN - Programación 1</p>
     </footer>
 
-    <!-- Script principal usando módulo -->
+    <!-- Script principal sin preview -->
     <script type="module">
-      import * as pdfjsLib from "https://mozilla.github.io/pdf.js/build/pdf.mjs";
-
-      pdfjsLib.GlobalWorkerOptions.workerSrc =
-        "https://mozilla.github.io/pdf.js/build/pdf.worker.mjs";
-
       async function loadPDFs() {
         const response = await fetch(
           "https://raw.githubusercontent.com/Bernard2806/Ejercicios-UTN-FRSN-Programacion1/main/pdfs.json"
@@ -135,15 +127,9 @@
         const grid = document.getElementById("pdf-grid");
         grid.innerHTML = "";
 
-        data.forEach(async (pdf) => {
+        data.forEach((pdf) => {
           const card = document.createElement("div");
           card.className = "pdf-card";
-
-          const previewDiv = document.createElement("div");
-          previewDiv.className = "pdf-preview";
-
-          const canvas = document.createElement("canvas");
-          previewDiv.appendChild(canvas);
 
           const content = document.createElement("div");
           content.className = "pdf-card-content";
@@ -154,32 +140,8 @@
             <small>Fecha: ${new Date(pdf.date).toLocaleDateString()}</small>
           `;
 
-          card.appendChild(previewDiv);
           card.appendChild(content);
           grid.appendChild(card);
-
-          // Render preview
-          try {
-            const loadingTask = pdfjsLib.getDocument(pdf.url);
-            const pdfDoc = await loadingTask.promise;
-            const page = await pdfDoc.getPage(1);
-            const viewport = page.getViewport({ scale: 1 });
-            const scale = 200 / viewport.height;
-            const scaledViewport = page.getViewport({ scale });
-
-            const context = canvas.getContext("2d");
-            canvas.height = scaledViewport.height;
-            canvas.width = scaledViewport.width;
-
-            await page.render({
-              canvasContext: context,
-              viewport: scaledViewport,
-            }).promise;
-          } catch (err) {
-            console.error("Error al renderizar PDF:", err);
-            previewDiv.innerHTML =
-              "<p style='font-size:0.8rem;color:#888'>Vista previa no disponible</p>";
-          }
         });
       }
 
