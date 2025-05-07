@@ -73,6 +73,33 @@
       .card-footer-item:hover {
         background-color: #f5f5f5;
       }
+      .footer-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      .footer-logo {
+        max-height: 120px;
+        width: auto;
+        background-color: white;
+        padding: 15px;
+        border-radius: 12px;
+        transition: transform 0.3s ease;
+      }
+      .footer-logo:hover {
+        transform: scale(1.05);
+      }
+      @media screen and (max-width: 768px) {
+        .footer-logos {
+          gap: 1rem;
+        }
+        .footer-logo {
+          max-height: 100px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -217,9 +244,44 @@
     <!-- Footer -->
     <footer class="footer has-background-light">
       <div class="content has-text-centered">
+        <div class="footer-logos">
+          <a
+            href="https://www.instagram.com/utnaulachivilcoy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="Images/Logos/UTN Aula Chivilcoy Logo.jpg"
+              alt="Logo UTN Aula Chivilcoy"
+              class="footer-logo"
+            />
+          </a>
+          <a
+            href="https://www.frsn.utn.edu.ar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="Images/Logos/UTN FRSN Logo.jpg"
+              alt="Logo UTN FRSN"
+              class="footer-logo"
+            />
+          </a>
+          <a
+            href="https://cuch.gob.ar/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img
+              src="Images/Logos/CUCH Logo.png"
+              alt="Logo CUCH"
+              class="footer-logo"
+            />
+          </a>
+        </div>
         <p>
           <strong>Actividades de Programación</strong> - Universidad Tecnológica
-          Nacional - Facultad Regional San Nicolás - UTN Aula Chivilcoy.
+          Nacional - Facultad Regional San Nicolás - UTN Aula Chivilcoy
         </p>
       </div>
     </footer>
