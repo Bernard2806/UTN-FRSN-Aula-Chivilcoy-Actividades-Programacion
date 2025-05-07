@@ -132,12 +132,12 @@
           );
           if (!response.ok) {
             document.getElementById("pdf-grid").innerHTML = `
-              <div class="column is-full">
-                <div class="notification is-danger is-light">
-                  <p class="has-text-centered">Error al cargar los PDFs. Por favor, intente nuevamente más tarde.</p>
-                </div>
-              </div>
-            `;
+        <div class="column is-full">
+          <div class="notification is-danger is-light">
+            <p class="has-text-centered">Error al cargar los PDFs. Por favor, intente nuevamente más tarde.</p>
+          </div>
+        </div>
+      `;
             return;
           }
 
@@ -147,57 +147,67 @@
 
           if (data.length === 0) {
             grid.innerHTML = `
-              <div class="column is-full">
-                <div class="notification is-warning is-light">
-                  <p class="has-text-centered">No se encontraron PDFs disponibles.</p>
-                </div>
-              </div>
-            `;
+        <div class="column is-full">
+          <div class="notification is-warning is-light">
+            <p class="has-text-centered">No se encontraron PDFs disponibles.</p>
+          </div>
+        </div>
+      `;
             return;
           }
+
+          // Ordenar los PDFs de más reciente a más viejo
+          data.sort((a, b) => new Date(b.date) - new Date(a.date));
 
           data.forEach((pdf) => {
             const fileName = pdf.url.split("/").pop();
             const date = new Date(pdf.date).toLocaleDateString();
+            const className = pdf.class || "Clase desconocida";
 
             const column = document.createElement("div");
             column.className =
               "column is-one-third-desktop is-half-tablet is-full-mobile";
 
             column.innerHTML = `
-              <div class="card pdf-card">
-                <div class="card-content">
-                  <div class="content">
-                    <p class="title is-5">${fileName}</p>
-                    <p class="subtitle is-6">
-                      <span class="icon">
-                        <i class="far fa-calendar-alt"></i>
-                      </span>
-                      ${date}
-                    </p>
-                  </div>
-                </div>
-                <footer class="card-footer">
-                  <a href="${pdf.url}" target="_blank" class="card-footer-item">
-                    <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                    </span>
-                    <span>Ver PDF</span>
-                  </a>
-                </footer>
-              </div>
-            `;
+        <div class="card pdf-card">
+          <div class="card-content">
+            <div class="content">
+              <p class="title is-5">${fileName}</p>
+              <p class="subtitle is-6">
+                <span class="icon">
+                  <i class="far fa-calendar-alt"></i>
+                </span>
+                ${date}
+              </p>
+              <p class="subtitle is-6">
+                <span class="icon">
+                  <i class="fas fa-chalkboard"></i>
+                </span>
+                ${className}
+              </p>
+            </div>
+          </div>
+          <footer class="card-footer">
+            <a href="${pdf.url}" target="_blank" class="card-footer-item">
+              <span class="icon">
+                <i class="fas fa-file-pdf"></i>
+              </span>
+              <span>Ver PDF</span>
+            </a>
+          </footer>
+        </div>
+      `;
 
             grid.appendChild(column);
           });
         } catch (error) {
           document.getElementById("pdf-grid").innerHTML = `
-            <div class="column is-full">
-              <div class="notification is-danger is-light">
-                <p class="has-text-centered">Error al procesar los datos: ${error.message}</p>
-              </div>
-            </div>
-          `;
+      <div class="column is-full">
+        <div class="notification is-danger is-light">
+          <p class="has-text-centered">Error al procesar los datos: ${error.message}</p>
+        </div>
+      </div>
+    `;
         }
       }
 
