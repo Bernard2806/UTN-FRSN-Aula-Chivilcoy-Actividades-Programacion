@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Índice de PDFs - UTN FRSN Programación 1</title>
+    <title>Actividades Programación 1 - UTN FRSN</title>
 
     <link
       rel="shortcut icon"
@@ -20,38 +20,398 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
     ></script>
     <style>
-      .hero-body {
-        padding: 2rem 1.5rem;
+      :root {
+        --bg-gradient-primary: linear-gradient(
+          135deg,
+          #121212 0%,
+          #1e1e1e 100%
+        );
+        --bg-gradient-secondary: linear-gradient(
+          135deg,
+          #1e1e1e 0%,
+          #2d2d2d 100%
+        );
+        --accent-gradient: linear-gradient(135deg, #3273dc 0%, #8352fd 100%);
+        --card-gradient: linear-gradient(135deg, #232526 0%, #1c1c1c 100%);
+        --hover-gradient: linear-gradient(135deg, #2a2a2a 0%, #323232 100%);
+        --text-primary: #f5f5f5;
+        --text-secondary: #b0b0b0;
+        --accent-color: #8352fd;
+        --success-color: #23d160;
+        --success-gradient: linear-gradient(135deg, #23d160 0%, #00b09b 100%);
       }
-      .pdf-card {
-        height: 100%;
+
+      body {
+        background: var(--bg-gradient-primary);
+        color: var(--text-primary);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #ddd;
-        border-radius: 8px;
       }
-      .pdf-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+      /* Hero section */
+      .hero.is-dark {
+        background: var(--bg-gradient-secondary);
+        position: relative;
+        overflow: hidden;
       }
-      .card-content {
-        flex-grow: 1;
-        text-align: center;
+
+      .hero.is-dark::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 20% 150%,
+          rgba(131, 82, 253, 0.15) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
       }
+
+      .hero-body {
+        padding: 3rem 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
       .logo-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
       }
+
       .logo-container img {
         max-height: 80px;
         width: auto;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
       }
-      .pdf-grid {
-        margin-top: 1.5rem;
+
+      .title,
+      .subtitle {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
       }
+
+      .subtitle {
+        color: var(--text-secondary);
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+      }
+
+      /* Section */
+      .section {
+        background: transparent;
+        padding: 3rem 1.5rem;
+        flex-grow: 1;
+      }
+
+      /* Class Filters */
+      .class-filters {
+        margin-bottom: 2rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        justify-content: center;
+      }
+
+      .class-filter {
+        background: rgba(131, 82, 253, 0.1);
+        border: 1px solid rgba(131, 82, 253, 0.3);
+        color: var(--text-primary);
+        border-radius: 20px;
+        padding: 0.5rem 1rem;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .class-filter:hover {
+        background: rgba(131, 82, 253, 0.2);
+        transform: translateY(-2px);
+      }
+
+      .class-filter.active {
+        background: var(--accent-gradient);
+        color: white;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      /* PDF Cards */
+      .columns.is-multiline {
+        margin: -0.75rem;
+      }
+
+      .column {
+        padding: 0.75rem;
+      }
+
+      .pdf-card {
+        height: 100%;
+        background: var(--card-gradient);
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        transform-origin: center center;
+      }
+
+      .pdf-card:hover {
+        transform: translateY(-10px) rotateX(5deg);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .pdf-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(131, 82, 253, 0.2) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+
+      .pdf-card:hover::after {
+        opacity: 1;
+      }
+
+      .pdf-card .card-content {
+        padding: 1.5rem;
+        background: transparent;
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+      }
+
+      .pdf-card .class-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: var(--accent-gradient);
+        color: white;
+        font-size: 0.75rem;
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-weight: bold;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      }
+
+      .pdf-card .file-name {
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        word-break: break-word;
+      }
+
+      .pdf-card .file-date {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .pdf-card .file-date .icon {
+        opacity: 0.7;
+      }
+
+      .pdf-card .pdf-icon {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        font-size: 1.5rem;
+        color: rgba(131, 82, 253, 0.7);
+      }
+
+      .pdf-card .card-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+      }
+
+      .pdf-card .card-footer-item {
+        color: var(--accent-color);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .pdf-card .card-footer-item::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gradient);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .pdf-card .card-footer-item:hover {
+        background: rgba(131, 82, 253, 0.1);
+        color: #fff;
+      }
+
+      .pdf-card .card-footer-item:hover::before {
+        width: 80%;
+      }
+
+      .pdf-card .card-footer-item .icon {
+        margin-right: 8px;
+      }
+
+      .pdf-card .card-footer-item.answer {
+        color: var(--success-color);
+      }
+
+      .pdf-card .card-footer-item.answer::before {
+        background: var(--success-gradient);
+      }
+
+      .pdf-card .card-footer-item.answer:hover {
+        background: rgba(35, 209, 96, 0.1);
+      }
+
+      /* Button styling */
+      .button.is-primary {
+        background: var(--accent-gradient);
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .button.is-primary:hover {
+        box-shadow: 0 5px 15px rgba(131, 82, 253, 0.4);
+        transform: translateY(-2px);
+      }
+
+      /* Back button */
+      .back-button .button {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-primary);
+        border: none;
+        transition: all 0.3s ease;
+      }
+
+      .back-button .button:hover {
+        background: rgba(255, 255, 255, 0.2);
+        transform: translateX(-5px);
+      }
+
+      /* Notifications */
+      .notification.is-info {
+        background-color: rgba(50, 115, 220, 0.1);
+        color: var(--text-primary);
+        border-left: 4px solid #3273dc;
+      }
+
+      .notification.is-warning {
+        background-color: rgba(255, 221, 87, 0.1);
+        color: var(--text-primary);
+        border-left: 4px solid #ffdd57;
+      }
+
+      .notification.is-danger {
+        background-color: rgba(241, 70, 104, 0.1);
+        color: var(--text-primary);
+        border-left: 4px solid #f14668;
+      }
+
+      /* Modal styling */
+      .modal-card-head,
+      .modal-card-foot {
+        background: var(--bg-gradient-secondary);
+        border-color: rgba(255, 255, 255, 0.1);
+      }
+
+      .modal-card-title {
+        color: var(--text-primary);
+      }
+
+      .modal-card-body {
+        background: var(--bg-gradient-primary);
+        color: var(--text-primary);
+      }
+
+      .button.is-success {
+        background: var(--success-gradient);
+        border: none;
+      }
+
+      /* Hover glow effect */
+      .pdf-card .hover-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(131, 82, 253, 0.1) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .pdf-card:hover .hover-glow {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-gradient-secondary);
+        padding: 3rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 80% 80%,
+          rgba(131, 82, 253, 0.15) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      /* Responsive styles */
       @media screen and (max-width: 768px) {
         .logo-container {
           flex-direction: column;
@@ -62,47 +422,30 @@
         .hero-body .back-button {
           text-align: center;
         }
-      }
-      .footer {
-        padding: 2rem 1.5rem;
-        margin-top: 2rem;
-      }
-      .card-footer-item {
-        font-weight: bold;
-        color: #3273dc;
-      }
-      .card-footer-item:hover {
-        background-color: #f5f5f5;
-      }
-      .back-button {
-        margin-bottom: 1rem;
-      }
-      .card-footer {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .card-footer-item.answer {
-        color: #23d160;
-      }
-      .modal-card-body {
-        text-align: center;
+        .class-filters {
+          flex-direction: column;
+          align-items: center;
+        }
+        .class-filter {
+          width: 100%;
+          max-width: 250px;
+          text-align: center;
+        }
       }
     </style>
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero is-link is-light">
+    <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
           <div class="logo-container">
             <img src="Images/Logos/UNT Logo.png" alt="Logo UTN" height="80" />
           </div>
-          <h1 class="title">Índice de Actividades - Programación 1</h1>
-          <h2 class="subtitle">
-            Universidad Tecnológica Nacional - Facultad Regional San Nicolás
-          </h2>
+          <h1 class="title is-2">Programación 1</h1>
+          <h2 class="subtitle is-4">Material de estudio y actividades</h2>
           <div class="back-button">
-            <a href="index.html" class="button is-link">
+            <a href="index.html" class="button">
               <span class="icon">
                 <i class="fas fa-arrow-left"></i>
               </span>
@@ -116,18 +459,25 @@
     <!-- Main Content -->
     <section class="section">
       <div class="container">
-        <div class="buttons is-centered mb-4">
-          <button id="refresh-btn" class="button is-info">
+        <div class="buttons is-centered mb-5">
+          <button id="refresh-btn" class="button is-primary">
             <span class="icon">
               <i class="fas fa-sync-alt"></i>
             </span>
-            <span>Recargar PDFs</span>
+            <span>Actualizar material</span>
           </button>
         </div>
-        <div id="pdf-grid" class="columns is-multiline pdf-grid">
+
+        <!-- Filtros por clase -->
+        <div id="class-filters" class="class-filters mb-5">
+          <!-- Los filtros se generarán dinámicamente -->
+        </div>
+
+        <!-- Grid de PDFs -->
+        <div id="pdf-grid" class="columns is-multiline">
           <div class="column is-full">
-            <div class="notification is-info is-light">
-              <p class="has-text-centered">Cargando PDFs...</p>
+            <div class="notification is-info">
+              <p class="has-text-centered">Cargando material de estudio...</p>
             </div>
           </div>
         </div>
@@ -139,17 +489,15 @@
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Posible Respuesta</p>
+          <p class="modal-card-title">Acceder a la solución</p>
           <button class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
           <div class="content">
+            <p>Estás a punto de ver la solución para este ejercicio.</p>
             <p>
-              Estás a punto de ver una posible respuesta para este ejercicio.
-            </p>
-            <p>
-              Recuerda que es importante intentar resolver los ejercicios por tu
-              cuenta antes de consultar las soluciones.
+              Te recomendamos intentar resolver los ejercicios por tu cuenta
+              antes de consultar las soluciones.
             </p>
             <p>¿Deseas continuar?</p>
           </div>
@@ -162,14 +510,18 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer has-background-light">
+    <footer class="footer">
       <div class="content has-text-centered">
-        <p>
-          <strong>Actividades de Programación 1</strong> - Universidad
-          Tecnológica Nacional - Facultad Regional San Nicolás - UTN Aula
-          Chivilcoy
+        <p style="color: var(--text-secondary)">
+          <strong style="color: var(--text-primary)"
+            >Actividades de Programación 1</strong
+          >
+          - Universidad Tecnológica Nacional - Facultad Regional San Nicolás -
+          UTN Aula Chivilcoy
         </p>
-        <p>&copy; 2025 UTN FRSN - Programación 1</p>
+        <p style="color: var(--text-secondary)">
+          &copy; 2025 UTN FRSN - Programación 1
+        </p>
       </div>
     </footer>
 
@@ -209,6 +561,65 @@
         localStorage.removeItem(CACHE_TIME_KEY);
       }
 
+      function getUniqueClasses(data) {
+        const classes = new Set();
+        classes.add("Todas"); // Opción para mostrar todas las clases
+
+        data.forEach((pdf) => {
+          if (pdf.class && pdf.class.trim() !== "") {
+            classes.add(pdf.class);
+          } else {
+            classes.add("Sin clasificar");
+          }
+        });
+
+        return Array.from(classes);
+      }
+
+      function renderClassFilters(classes) {
+        const filtersContainer = document.getElementById("class-filters");
+        filtersContainer.innerHTML = "";
+
+        classes.forEach((className) => {
+          const filterBtn = document.createElement("div");
+          filterBtn.className =
+            className === "Todas" ? "class-filter active" : "class-filter";
+          filterBtn.textContent = className;
+          filterBtn.dataset.class = className;
+
+          filterBtn.addEventListener("click", function () {
+            // Quitar active de todos los filtros
+            document.querySelectorAll(".class-filter").forEach((btn) => {
+              btn.classList.remove("active");
+            });
+
+            // Añadir active al filtro seleccionado
+            this.classList.add("active");
+
+            // Filtrar PDFs según la clase seleccionada
+            filterPDFsByClass(this.dataset.class);
+          });
+
+          filtersContainer.appendChild(filterBtn);
+        });
+      }
+
+      function filterPDFsByClass(className) {
+        const pdfCards = document.querySelectorAll(".pdf-column");
+
+        if (className === "Todas") {
+          pdfCards.forEach((card) => {
+            card.style.display = "block";
+          });
+          return;
+        }
+
+        pdfCards.forEach((card) => {
+          const cardClass = card.dataset.class || "Sin clasificar";
+          card.style.display = cardClass === className ? "block" : "none";
+        });
+      }
+
       function renderPDFs(data) {
         const grid = document.getElementById("pdf-grid");
         grid.innerHTML = "";
@@ -216,19 +627,24 @@
         if (!data || data.length === 0) {
           grid.innerHTML = `
         <div class="column is-full">
-          <div class="notification is-warning is-light">
-            <p class="has-text-centered">No se encontraron PDFs disponibles.</p>
+          <div class="notification is-warning">
+            <p class="has-text-centered">No se encontraron materiales disponibles.</p>
           </div>
         </div>`;
           return;
         }
 
+        // Ordenar PDFs por fecha (más recientes primero)
         data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+        // Obtener y renderizar los filtros de clase
+        const classes = getUniqueClasses(data);
+        renderClassFilters(classes);
 
         data.forEach((pdf) => {
           const fileName = pdf.url.split("/").pop();
           const date = new Date(pdf.date).toLocaleDateString();
-          const className = pdf.class || "Clase desconocida";
+          const className = pdf.class || "Sin clasificar";
 
           // Extraer el directorio del PDF desde la URL
           const urlParts = pdf.url.split("/");
@@ -243,28 +659,29 @@
 
           const column = document.createElement("div");
           column.className =
-            "column is-one-third-desktop is-half-tablet is-full-mobile";
+            "column is-one-quarter-desktop is-one-third-tablet is-full-mobile pdf-column";
+          column.dataset.class = className;
           column.innerHTML = `
         <div class="card pdf-card">
+          <div class="hover-glow"></div>
           <div class="card-content">
-            <div class="content">
-              <p class="title is-5">${fileName}</p>
-              <p class="subtitle is-6">
+            <span class="pdf-icon"><i class="fas fa-file-pdf"></i></span>
+            <span class="class-badge">${className}</span>
+            <div>
+              <p class="file-name">${fileName}</p>
+              <p class="file-date">
                 <span class="icon"><i class="far fa-calendar-alt"></i></span> ${date}
-              </p>
-              <p class="subtitle is-6">
-                <span class="icon"><i class="fas fa-chalkboard"></i></span> ${className}
               </p>
             </div>
           </div>
           <footer class="card-footer">
             <a href="${pdf.url}" target="_blank" class="card-footer-item">
-              <span class="icon"><i class="fas fa-file-pdf"></i></span>
-              <span>Ver PDF</span>
+              <span class="icon"><i class="fas fa-download"></i></span>
+              <span>Descargar</span>
             </a>
             <a href="#" data-answer-url="${gitHubDirUrl}" class="card-footer-item answer show-answer-modal">
               <span class="icon"><i class="fas fa-check-circle"></i></span>
-              <span>Ver respuesta</span>
+              <span>Solución</span>
             </a>
           </footer>
         </div>`;
@@ -287,6 +704,7 @@
             modal.classList.add("is-active");
             const answerUrl = button.getAttribute("data-answer-url");
             continueBtn.setAttribute("href", answerUrl);
+            continueBtn.setAttribute("target", "_blank");
           });
         });
 
@@ -305,8 +723,8 @@
       async function loadPDFs(forceRefresh = false) {
         document.getElementById("pdf-grid").innerHTML = `
       <div class="column is-full">
-        <div class="notification is-info is-light">
-          <p class="has-text-centered">Cargando PDFs...</p>
+        <div class="notification is-info">
+          <p class="has-text-centered">Cargando material de estudio...</p>
         </div>
       </div>`;
 
@@ -325,8 +743,8 @@
         } catch (error) {
           document.getElementById("pdf-grid").innerHTML = `
         <div class="column is-full">
-          <div class="notification is-danger is-light">
-            <p class="has-text-centered">Error al cargar los PDFs: ${error.message}</p>
+          <div class="notification is-danger">
+            <p class="has-text-centered">Error al cargar los archivos: ${error.message}</p>
           </div>
         </div>`;
         }
