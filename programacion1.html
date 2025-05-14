@@ -77,6 +77,16 @@
       .back-button {
         margin-bottom: 1rem;
       }
+      .card-footer {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .card-footer-item.answer {
+        color: #23d160;
+      }
+      .modal-card-body {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -124,6 +134,33 @@
       </div>
     </section>
 
+    <!-- Modal para respuestas -->
+    <div id="answer-modal" class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Posible Respuesta</p>
+          <button class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+            <p>
+              Estás a punto de ver una posible respuesta para este ejercicio.
+            </p>
+            <p>
+              Recuerda que es importante intentar resolver los ejercicios por tu
+              cuenta antes de consultar las soluciones.
+            </p>
+            <p>¿Deseas continuar?</p>
+          </div>
+        </section>
+        <footer class="modal-card-foot">
+          <a id="continue-to-answer" class="button is-success">Continuar</a>
+          <button class="button cancel-btn">Cancelar</button>
+        </footer>
+      </div>
+    </div>
+
     <!-- Footer -->
     <footer class="footer has-background-light">
       <div class="content has-text-centered">
@@ -136,11 +173,15 @@
       </div>
     </footer>
 
-    <!-- Script principal sin preview -->
+    <!-- Script principal -->
     <script type="module">
       const CACHE_KEY = "pdfCache";
       const CACHE_TIME_KEY = "pdfCacheTime";
       const CACHE_EXPIRATION_MS = 5 * 60 * 1000; // 5 minutos
+
+      // URL base del repositorio donde están los PDFs
+      const REPO_BASE_URL =
+        "https://github.com/Bernard2806/Ejercicios-UTN-FRSN-Programacion1/tree/main";
 
       async function fetchPDFsFromNetwork() {
         const response = await fetch(
@@ -189,6 +230,17 @@
           const date = new Date(pdf.date).toLocaleDateString();
           const className = pdf.class || "Clase desconocida";
 
+          // Extraer el directorio del PDF desde la URL
+          const urlParts = pdf.url.split("/");
+          const pdfName = urlParts.pop(); // Nombre del archivo PDF
+          const pdfDir = urlParts.join("/"); // Directorio del PDF
+
+          // Crear URL para el directorio en GitHub
+          const gitHubDirUrl = pdfDir.replace(
+            "https://raw.githubusercontent.com/Bernard2806/Ejercicios-UTN-FRSN-Programacion1/main",
+            REPO_BASE_URL
+          );
+
           const column = document.createElement("div");
           column.className =
             "column is-one-third-desktop is-half-tablet is-full-mobile";
@@ -210,9 +262,43 @@
               <span class="icon"><i class="fas fa-file-pdf"></i></span>
               <span>Ver PDF</span>
             </a>
+            <a href="#" data-answer-url="${gitHubDirUrl}" class="card-footer-item answer show-answer-modal">
+              <span class="icon"><i class="fas fa-check-circle"></i></span>
+              <span>Ver respuesta</span>
+            </a>
           </footer>
         </div>`;
           grid.appendChild(column);
+        });
+
+        // Agregar event listeners a los botones de respuesta
+        setupAnswerModalButtons();
+      }
+
+      function setupAnswerModalButtons() {
+        const modal = document.getElementById("answer-modal");
+        const answerButtons = document.querySelectorAll(".show-answer-modal");
+        const continueBtn = document.getElementById("continue-to-answer");
+        const closeButtons = modal.querySelectorAll(".delete, .cancel-btn");
+
+        answerButtons.forEach((button) => {
+          button.addEventListener("click", (e) => {
+            e.preventDefault();
+            modal.classList.add("is-active");
+            const answerUrl = button.getAttribute("data-answer-url");
+            continueBtn.setAttribute("href", answerUrl);
+          });
+        });
+
+        continueBtn.addEventListener("click", () => {
+          modal.classList.remove("is-active");
+          // El enlace se abre en una nueva pestaña por defecto
+        });
+
+        closeButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            modal.classList.remove("is-active");
+          });
         });
       }
 
