@@ -20,42 +20,304 @@
       src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
     ></script>
     <style>
-      .hero-body {
-        padding: 2rem 1.5rem;
+      :root {
+        --bg-gradient-primary: linear-gradient(
+          135deg,
+          #121212 0%,
+          #1e1e1e 100%
+        );
+        --bg-gradient-secondary: linear-gradient(
+          135deg,
+          #1e1e1e 0%,
+          #2d2d2d 100%
+        );
+        --accent-gradient: linear-gradient(135deg, #3273dc 0%, #8352fd 100%);
+        --card-gradient: linear-gradient(135deg, #232526 0%, #1c1c1c 100%);
+        --hover-gradient: linear-gradient(135deg, #2a2a2a 0%, #323232 100%);
+        --text-primary: #f5f5f5;
+        --text-secondary: #b0b0b0;
+        --accent-color: #8352fd;
       }
-      .card {
-        height: 100%;
+
+      body {
+        background: var(--bg-gradient-primary);
+        color: var(--text-primary);
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1px solid #ddd;
-        border-radius: 8px;
-        margin: 0; /* Elimina cualquier margen de la tarjeta */
       }
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+
+      /* Hero section */
+      .hero.is-dark {
+        background: var(--bg-gradient-secondary);
+        position: relative;
+        overflow: hidden;
       }
-      .card-content {
-        flex-grow: 1;
+
+      .hero.is-dark::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 20% 150%,
+          rgba(131, 82, 253, 0.15) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
       }
+
+      .hero-body {
+        padding: 3rem 1.5rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
       .logo-container {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
       }
+
       .logo-container img {
         max-height: 80px;
         width: auto;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
       }
+
+      .title,
+      .subtitle {
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        display: inline-block;
+      }
+
+      .subtitle {
+        color: var(--text-secondary);
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+      }
+
+      /* Cards Section */
+      .section {
+        background: transparent;
+        padding: 3rem 1.5rem;
+        flex-grow: 1;
+      }
+
       .columns.is-multiline {
-        margin: -0.75rem; /* Elimina el margen exterior */
-        gap: 0; /* Elimina el gap que causa problemas */
+        margin: -0.75rem;
       }
+
       .column {
-        padding: 0.75rem; /* Añade padding uniforme a las columnas */
+        padding: 0.75rem;
       }
+
+      .card {
+        height: 100%;
+        background: var(--card-gradient);
+        border: none;
+        border-radius: 16px;
+        overflow: hidden;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        position: relative;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        transform-style: preserve-3d;
+        transform-origin: center center;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) rotateX(5deg);
+        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          135deg,
+          rgba(131, 82, 253, 0.2) 0%,
+          transparent 100%
+        );
+        opacity: 0;
+        transition: opacity 0.5s ease;
+        pointer-events: none;
+      }
+
+      .card:hover::after {
+        opacity: 1;
+      }
+
+      .card-image {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.2) 50%,
+          transparent 100%
+        );
+        z-index: 1;
+        animation: shine 2s infinite;
+        animation-play-state: paused;
+      }
+
+      .card:hover .card-image::before {
+        animation-play-state: running;
+      }
+
+      @keyframes shine {
+        to {
+          left: 150%;
+        }
+      }
+
+      .card-image figure {
+        overflow: hidden;
+        border-radius: 12px 12px 0 0;
+      }
+
+      .card-image img {
+        transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        object-fit: cover;
+      }
+
+      .card:hover .card-image img {
+        transform: scale(1.05);
+      }
+
+      .card-content {
+        padding: 1.5rem;
+        background: transparent;
+        position: relative;
+        z-index: 1;
+      }
+
+      .card-content .title {
+        color: var(--text-primary);
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+        background: none;
+        -webkit-background-clip: initial;
+        background-clip: initial;
+      }
+
+      .card-footer {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        background: transparent;
+      }
+
+      .card-footer-item {
+        color: var(--accent-color);
+        font-weight: 600;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card-footer-item::before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 2px;
+        background: var(--accent-gradient);
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
+      }
+
+      .card-footer-item:hover {
+        background: rgba(131, 82, 253, 0.1);
+        color: #fff;
+      }
+
+      .card-footer-item:hover::before {
+        width: 80%;
+      }
+
+      .card-footer-item .icon {
+        margin-right: 8px;
+        position: relative;
+      }
+
+      /* Footer */
+      .footer {
+        background: var(--bg-gradient-secondary);
+        padding: 3rem 1.5rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .footer::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+          circle at 80% 80%,
+          rgba(131, 82, 253, 0.15) 0%,
+          transparent 50%
+        );
+        pointer-events: none;
+      }
+
+      .footer-logos {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      .footer-logo {
+        max-height: 120px;
+        width: auto;
+        background-color: rgba(255, 255, 255, 0.05);
+        padding: 15px;
+        border-radius: 12px;
+        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        filter: grayscale(30%);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .footer-logo:hover {
+        transform: translateY(-5px) scale(1.05);
+        filter: grayscale(0%);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Responsive styles */
       @media screen and (max-width: 768px) {
         .logo-container {
           flex-direction: column;
@@ -65,38 +327,6 @@
         .hero-body .subtitle {
           text-align: center;
         }
-      }
-      .footer {
-        padding: 2rem 1.5rem;
-        margin-top: 2rem;
-      }
-      .card-footer-item {
-        font-weight: bold;
-        color: #3273dc;
-      }
-      .card-footer-item:hover {
-        background-color: #f5f5f5;
-      }
-      .footer-logos {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-bottom: 2rem;
-      }
-      .footer-logo {
-        max-height: 120px;
-        width: auto;
-        background-color: white;
-        padding: 15px;
-        border-radius: 12px;
-        transition: transform 0.3s ease;
-      }
-      .footer-logo:hover {
-        transform: scale(1.05);
-      }
-      @media screen and (max-width: 768px) {
         .footer-logos {
           gap: 1rem;
         }
@@ -104,18 +334,52 @@
           max-height: 100px;
         }
       }
+
+      /* Specific animation for card hover */
+      .card .hover-glow {
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(
+          circle,
+          rgba(131, 82, 253, 0.1) 0%,
+          transparent 70%
+        );
+        opacity: 0;
+        transform: scale(0.5);
+        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .card:hover .hover-glow {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Links */
+      a {
+        color: var(--accent-color);
+        transition: color 0.3s ease;
+      }
+
+      a:hover {
+        color: #fff;
+      }
     </style>
   </head>
   <body>
     <!-- Hero Section -->
-    <section class="hero is-link is-light">
+    <section class="hero is-dark">
       <div class="hero-body">
         <div class="container">
           <div class="logo-container">
             <img src="Images/Logos/UNT Logo.png" alt="Logo UTN" height="80" />
           </div>
-          <h1 class="title">Actividades de Programación</h1>
-          <h2 class="subtitle">
+          <h1 class="title is-2">Actividades de Programación</h1>
+          <h2 class="subtitle is-4">
             Universidad Tecnológica Nacional - Facultad Regional San Nicolás
           </h2>
         </div>
@@ -132,6 +396,7 @@
           >
             <a href="programacion1.html">
               <div class="card">
+                <div class="hover-glow"></div>
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
@@ -146,7 +411,7 @@
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-tasks"></i>
+                      <i class="fas fa-code"></i>
                     </span>
                     Ver actividades
                   </span>
@@ -161,6 +426,7 @@
           >
             <a href="programacion2.html">
               <div class="card">
+                <div class="hover-glow"></div>
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
@@ -175,7 +441,7 @@
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-tasks"></i>
+                      <i class="fas fa-laptop-code"></i>
                     </span>
                     Ver actividades
                   </span>
@@ -190,6 +456,7 @@
           >
             <a href="programacion3.html">
               <div class="card">
+                <div class="hover-glow"></div>
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
@@ -204,7 +471,7 @@
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-tasks"></i>
+                      <i class="fas fa-project-diagram"></i>
                     </span>
                     Ver actividades
                   </span>
@@ -219,6 +486,7 @@
           >
             <a href="programacion4.html">
               <div class="card">
+                <div class="hover-glow"></div>
                 <div class="card-image">
                   <figure class="image is-4by3">
                     <img
@@ -233,7 +501,7 @@
                 <footer class="card-footer">
                   <span class="card-footer-item">
                     <span class="icon">
-                      <i class="fas fa-tasks"></i>
+                      <i class="fas fa-database"></i>
                     </span>
                     Ver actividades
                   </span>
@@ -246,7 +514,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer has-background-light">
+    <footer class="footer">
       <div class="content has-text-centered">
         <div class="footer-logos">
           <a
@@ -283,9 +551,12 @@
             />
           </a>
         </div>
-        <p>
-          <strong>Actividades de Programación</strong> - Universidad Tecnológica
-          Nacional - Facultad Regional San Nicolás - UTN Aula Chivilcoy
+        <p style="color: var(--text-secondary)">
+          <strong style="color: var(--text-primary)"
+            >Actividades de Programación</strong
+          >
+          - Universidad Tecnológica Nacional - Facultad Regional San Nicolás -
+          UTN Aula Chivilcoy
         </p>
       </div>
     </footer>
