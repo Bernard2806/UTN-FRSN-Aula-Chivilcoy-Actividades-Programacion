@@ -1,564 +1,536 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Actividades de Programación - UTN FRSN</title>
 
-    <link
-      rel="shortcut icon"
-      href="Images/Logos/UTN Favicon.jpg"
-      type="image/x-icon"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividades de Programación - UTN FRSN</title>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
-    />
-    <script
-      defer
-      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"
-    ></script>
-    <style>
-      :root {
-        --bg-gradient-primary: linear-gradient(
-          135deg,
+  <link rel="shortcut icon" href="Images/Logos/UTN Favicon.jpg" type="image/x-icon" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css" />
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <style>
+    :root {
+      --bg-gradient-primary: linear-gradient(135deg,
           #121212 0%,
-          #1e1e1e 100%
-        );
-        --bg-gradient-secondary: linear-gradient(
-          135deg,
+          #1e1e1e 100%);
+      --bg-gradient-secondary: linear-gradient(135deg,
           #1e1e1e 0%,
-          #2d2d2d 100%
-        );
-        --accent-gradient: linear-gradient(135deg, #3273dc 0%, #8352fd 100%);
-        --card-gradient: linear-gradient(135deg, #232526 0%, #1c1c1c 100%);
-        --hover-gradient: linear-gradient(135deg, #2a2a2a 0%, #323232 100%);
-        --text-primary: #f5f5f5;
-        --text-secondary: #b0b0b0;
-        --accent-color: #8352fd;
-      }
+          #2d2d2d 100%);
+      --accent-gradient: linear-gradient(135deg, #3273dc 0%, #8352fd 100%);
+      --card-gradient: linear-gradient(135deg, #232526 0%, #1c1c1c 100%);
+      --hover-gradient: linear-gradient(135deg, #2a2a2a 0%, #323232 100%);
+      --text-primary: #f5f5f5;
+      --text-secondary: #b0b0b0;
+      --accent-color: #8352fd;
+    }
 
-      body {
-        background: var(--bg-gradient-primary);
-        color: var(--text-primary);
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-      }
+    body {
+      background: var(--bg-gradient-primary);
+      color: var(--text-primary);
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-      /* Hero section */
-      .hero.is-dark {
-        background: var(--bg-gradient-secondary);
-        position: relative;
-        overflow: hidden;
-      }
+    /* Hero section */
+    .hero.is-dark {
+      background: var(--bg-gradient-secondary);
+      position: relative;
+      overflow: hidden;
+    }
 
-      .hero.is-dark::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          circle at 20% 150%,
+    .hero.is-dark::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 20% 150%,
           rgba(131, 82, 253, 0.15) 0%,
-          transparent 50%
-        );
-        pointer-events: none;
-      }
+          transparent 50%);
+      pointer-events: none;
+    }
 
-      .hero-body {
-        padding: 3rem 1.5rem;
-        position: relative;
-        z-index: 1;
-      }
+    .hero-body {
+      padding: 3rem 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
 
-      .container {
-        max-width: 1200px;
-        margin: 0 auto;
-      }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
 
-      .logo-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 1.5rem;
-      }
+    .logo-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
 
-      .logo-container img {
-        max-height: 80px;
-        width: auto;
-        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
-      }
+    .logo-container img {
+      max-height: 80px;
+      width: auto;
+      filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    }
 
-      .title,
-      .subtitle {
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-        display: inline-block;
-      }
+    .title,
+    .subtitle {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
 
-      .subtitle {
-        color: var(--text-secondary);
-        background: none;
-        -webkit-background-clip: initial;
-        background-clip: initial;
-      }
+    .subtitle {
+      color: var(--text-secondary);
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+    }
 
-      /* Cards Section */
-      .section {
-        background: transparent;
-        padding: 3rem 1.5rem;
-        flex-grow: 1;
-      }
+    /* Cards Section */
+    .section {
+      background: transparent;
+      padding: 3rem 1.5rem;
+      flex-grow: 1;
+    }
 
-      .columns.is-multiline {
-        margin: -0.75rem;
-      }
+    .columns.is-multiline {
+      margin: -0.75rem;
+    }
 
-      .column {
-        padding: 0.75rem;
-      }
+    .column {
+      padding: 0.75rem;
+    }
 
-      .card {
-        height: 100%;
-        background: var(--card-gradient);
-        border: none;
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        position: relative;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        transform-style: preserve-3d;
-        transform-origin: center center;
-      }
+    .card {
+      height: 100%;
+      background: var(--card-gradient);
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      position: relative;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      transform-style: preserve-3d;
+      transform-origin: center center;
+    }
 
-      .card:hover {
-        transform: translateY(-10px) rotateX(5deg);
-        box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
-      }
+    .card:hover {
+      transform: translateY(-10px) rotateX(5deg);
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
+    }
 
-      .card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          135deg,
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
           rgba(131, 82, 253, 0.2) 0%,
-          transparent 100%
-        );
-        opacity: 0;
-        transition: opacity 0.5s ease;
-        pointer-events: none;
-      }
+          transparent 100%);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
 
-      .card:hover::after {
-        opacity: 1;
-      }
+    .card:hover::after {
+      opacity: 1;
+    }
 
-      .card-image {
-        position: relative;
-        overflow: hidden;
-      }
+    .card-image {
+      position: relative;
+      overflow: hidden;
+    }
 
-      .card-image::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 50%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    .card-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg,
           transparent 0%,
           rgba(255, 255, 255, 0.2) 50%,
-          transparent 100%
-        );
-        z-index: 1;
-        animation: shine 2s infinite;
-        animation-play-state: paused;
-      }
+          transparent 100%);
+      z-index: 1;
+      animation: shine 2s infinite;
+      animation-play-state: paused;
+    }
 
-      .card:hover .card-image::before {
-        animation-play-state: running;
-      }
+    .card:hover .card-image::before {
+      animation-play-state: running;
+    }
 
-      @keyframes shine {
-        to {
-          left: 150%;
-        }
+    @keyframes shine {
+      to {
+        left: 150%;
       }
+    }
 
-      .card-image figure {
-        overflow: hidden;
-        border-radius: 12px 12px 0 0;
-      }
+    .card-image figure {
+      overflow: hidden;
+      border-radius: 12px 12px 0 0;
+    }
 
-      .card-image img {
-        transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
-        object-fit: cover;
-      }
+    .card-image img {
+      transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+      object-fit: cover;
+    }
 
-      .card:hover .card-image img {
-        transform: scale(1.05);
-      }
+    .card:hover .card-image img {
+      transform: scale(1.05);
+    }
 
-      .card-content {
-        padding: 1.5rem;
-        background: transparent;
-        position: relative;
-        z-index: 1;
-      }
+    .card-content {
+      padding: 1.5rem;
+      background: transparent;
+      position: relative;
+      z-index: 1;
+    }
 
-      .card-content .title {
-        color: var(--text-primary);
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-        background: none;
-        -webkit-background-clip: initial;
-        background-clip: initial;
-      }
+    .card-content .title {
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+    }
 
-      .card-footer {
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        background: transparent;
-      }
+    .card-footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      background: transparent;
+    }
 
-      .card-footer-item {
-        color: var(--accent-color);
-        font-weight: 600;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
+    .card-footer-item {
+      color: var(--accent-color);
+      font-weight: 600;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-      .card-footer-item::before {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 0;
-        height: 2px;
-        background: var(--accent-gradient);
-        transition: all 0.3s ease;
-        transform: translateX(-50%);
-      }
+    .card-footer-item::before {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: var(--accent-gradient);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
 
-      .card-footer-item:hover {
-        background: rgba(131, 82, 253, 0.1);
-        color: #fff;
-      }
+    .card-footer-item:hover {
+      background: rgba(131, 82, 253, 0.1);
+      color: #fff;
+    }
 
-      .card-footer-item:hover::before {
-        width: 80%;
-      }
+    .card-footer-item:hover::before {
+      width: 80%;
+    }
 
-      .card-footer-item .icon {
-        margin-right: 8px;
-        position: relative;
-      }
+    .card-footer-item .icon {
+      margin-right: 8px;
+      position: relative;
+    }
 
-      /* Footer */
-      .footer {
-        background: var(--bg-gradient-secondary);
-        padding: 3rem 1.5rem;
-        position: relative;
-        overflow: hidden;
-      }
+    /* Specific animation for card hover */
+    .card .hover-glow {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle,
+          rgba(131, 82, 253, 0.1) 0%,
+          transparent 70%);
+      opacity: 0;
+      transform: scale(0.5);
+      transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+      pointer-events: none;
+      z-index: 0;
+    }
 
-      .footer::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: radial-gradient(
-          circle at 80% 80%,
+    .card:hover .hover-glow {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Action Buttons Section */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      background: var(--card-gradient);
+      border: 2px solid rgba(131, 82, 253, 0.3);
+      border-radius: 12px;
+      padding: 1.5rem 3rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      color: var(--text-primary);
+      font-size: 1.25rem;
+      font-weight: 600;
+      transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .action-btn::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      background: var(--accent-gradient);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+      z-index: 0;
+    }
+
+    .action-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .action-btn:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-color);
+      box-shadow: 0 15px 30px rgba(131, 82, 253, 0.4);
+    }
+
+    .action-btn .icon,
+    .action-btn span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .action-btn .icon {
+      font-size: 1.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--bg-gradient-secondary);
+      padding: 3rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at 80% 80%,
           rgba(131, 82, 253, 0.15) 0%,
-          transparent 50%
-        );
-        pointer-events: none;
+          transparent 50%);
+      pointer-events: none;
+    }
+
+    .footer-logos {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .footer-logo {
+      max-height: 120px;
+      width: auto;
+      background-color: rgba(255, 255, 255);
+      padding: 15px;
+      border-radius: 12px;
+      transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+      filter: grayscale(30%);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .footer-logo:hover {
+      transform: translateY(-5px) scale(1.05);
+      filter: grayscale(0%);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Responsive styles */
+    @media screen and (max-width: 768px) {
+      .logo-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .hero-body .title,
+      .hero-body .subtitle {
+        text-align: center;
       }
 
       .footer-logos {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        flex-wrap: wrap;
-        margin-bottom: 2rem;
-        position: relative;
-        z-index: 1;
+        gap: 1rem;
       }
 
       .footer-logo {
-        max-height: 120px;
-        width: auto;
-        background-color: rgba(255, 255, 255);
-        padding: 15px;
-        border-radius: 12px;
-        transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-        filter: grayscale(30%);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        max-height: 100px;
       }
 
-      .footer-logo:hover {
-        transform: translateY(-5px) scale(1.05);
-        filter: grayscale(0%);
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      .action-buttons {
+        gap: 1rem;
       }
 
-      /* Responsive styles */
-      @media screen and (max-width: 768px) {
-        .logo-container {
-          flex-direction: column;
-          gap: 1rem;
-        }
-        .hero-body .title,
-        .hero-body .subtitle {
-          text-align: center;
-        }
-        .footer-logos {
-          gap: 1rem;
-        }
-        .footer-logo {
-          max-height: 100px;
-        }
+      .action-btn {
+        padding: 1.25rem 2rem;
+        font-size: 1.1rem;
       }
+    }
 
-      /* Specific animation for card hover */
-      .card .hover-glow {
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(
-          circle,
-          rgba(131, 82, 253, 0.1) 0%,
-          transparent 70%
-        );
-        opacity: 0;
-        transform: scale(0.5);
-        transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-        pointer-events: none;
-        z-index: 0;
-      }
+    /* Links */
+    a {
+      color: var(--accent-color);
+      transition: color 0.3s ease;
+    }
 
-      .card:hover .hover-glow {
-        opacity: 1;
-        transform: scale(1);
-      }
+    a:hover {
+      color: #fff;
+    }
+  </style>
+</head>
 
-      /* Links */
-      a {
-        color: var(--accent-color);
-        transition: color 0.3s ease;
-      }
-
-      a:hover {
-        color: #fff;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Hero Section -->
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container">
-          <div class="logo-container">
-            <img src="Images/Logos/UNT Logo.png" alt="Logo UTN" height="80" />
-          </div>
-          <h1 class="title is-2">Actividades de Programación</h1>
-          <h2 class="subtitle is-4">
-            Universidad Tecnológica Nacional - Facultad Regional San Nicolás
-          </h2>
-        </div>
-      </div>
-    </section>
-
-    <!-- Main Content -->
-    <section class="section">
+<body>
+  <!-- Hero Section -->
+  <section class="hero is-dark">
+    <div class="hero-body">
       <div class="container">
-        <div class="columns is-multiline">
-          <!-- Programación 1 -->
-          <div
-            class="column is-one-third-desktop is-half-tablet is-full-mobile"
-          >
-            <a href="programacion1.html">
-              <div class="card">
-                <div class="hover-glow"></div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img
-                      src="Images/Programación I.jpeg"
-                      alt="Programación 1"
-                    />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <h3 class="title is-4">Programación I</h3>
-                </div>
-                <footer class="card-footer">
-                  <span class="card-footer-item">
-                    <span class="icon">
-                      <i class="fas fa-code"></i>
-                    </span>
-                    Ver actividades
-                  </span>
-                </footer>
-              </div>
-            </a>
-          </div>
-
-          <!-- Programación 2 -->
-          <div
-            class="column is-one-third-desktop is-half-tablet is-full-mobile"
-          >
-            <a href="programacion2.html">
-              <div class="card">
-                <div class="hover-glow"></div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img
-                      src="Images/Programación II.jpg"
-                      alt="Programación 2"
-                    />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <h3 class="title is-4">Programación II</h3>
-                </div>
-                <footer class="card-footer">
-                  <span class="card-footer-item">
-                    <span class="icon">
-                      <i class="fas fa-laptop-code"></i>
-                    </span>
-                    Ver actividades
-                  </span>
-                </footer>
-              </div>
-            </a>
-          </div>
-
-          <!-- Programación 3 -->
-          <div
-            class="column is-one-third-desktop is-half-tablet is-full-mobile"
-          >
-            <a href="programacion3.html">
-              <div class="card">
-                <div class="hover-glow"></div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img
-                      src="https://placehold.co/400x300?text=Programación+III"
-                      alt="Programación 3"
-                    />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <h3 class="title is-4">Programación III</h3>
-                </div>
-                <footer class="card-footer">
-                  <span class="card-footer-item">
-                    <span class="icon">
-                      <i class="fas fa-project-diagram"></i>
-                    </span>
-                    Ver actividades
-                  </span>
-                </footer>
-              </div>
-            </a>
-          </div>
-
-          <!-- Programación 4 -->
-          <div
-            class="column is-one-third-desktop is-half-tablet is-full-mobile"
-          >
-            <a href="programacion4.html">
-              <div class="card">
-                <div class="hover-glow"></div>
-                <div class="card-image">
-                  <figure class="image is-4by3">
-                    <img
-                      src="https://placehold.co/400x300?text=Programación+IV"
-                      alt="Programación 4"
-                    />
-                  </figure>
-                </div>
-                <div class="card-content">
-                  <h3 class="title is-4">Programación IV</h3>
-                </div>
-                <footer class="card-footer">
-                  <span class="card-footer-item">
-                    <span class="icon">
-                      <i class="fas fa-database"></i>
-                    </span>
-                    Ver actividades
-                  </span>
-                </footer>
-              </div>
-            </a>
-          </div>
+        <div class="logo-container">
+          <img src="Images/Logos/UNT Logo.png" alt="Logo UTN" height="80" />
         </div>
+        <h1 class="title is-2">Actividades de Programación</h1>
+        <h2 class="subtitle is-4">
+          Universidad Tecnológica Nacional - Facultad Regional San Nicolás
+        </h2>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="content has-text-centered">
-        <div class="footer-logos">
-          <a
-            href="https://www.instagram.com/utnaulachivilcoy/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="Images/Logos/UTN Aula Chivilcoy Logo.jpg"
-              alt="Logo UTN Aula Chivilcoy"
-              class="footer-logo"
-            />
-          </a>
-          <a
-            href="https://www.frsn.utn.edu.ar/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="Images/Logos/UTN FRSN Logo.jpg"
-              alt="Logo UTN FRSN"
-              class="footer-logo"
-            />
-          </a>
-          <a
-            href="https://cuch.gob.ar/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              src="Images/Logos/CUCH Logo.png"
-              alt="Logo CUCH"
-              class="footer-logo"
-            />
+  <!-- Main Content -->
+  <section class="section">
+    <div class="container">
+      <div class="columns is-multiline is-centered">
+        <!-- Programación 1 -->
+        <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
+          <a href="programacion1.html">
+            <div class="card">
+              <div class="hover-glow"></div>
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="Images/Programación I.jpeg" alt="Programación 1" />
+                </figure>
+              </div>
+              <div class="card-content">
+                <h3 class="title is-4">Programación I</h3>
+              </div>
+              <footer class="card-footer">
+                <span class="card-footer-item">
+                  <span class="icon">
+                    <i class="fas fa-code"></i>
+                  </span>
+                  Ver actividades
+                </span>
+              </footer>
+            </div>
           </a>
         </div>
-        <p style="color: var(--text-secondary)">
-          <strong style="color: var(--text-primary)"
-            >Actividades de Programación</strong
-          >
-          - Universidad Tecnológica Nacional - Facultad Regional San Nicolás -
-          UTN Aula Chivilcoy
-        </p>
+
+        <!-- Programación 2 -->
+        <div class="column is-one-third-desktop is-half-tablet is-full-mobile">
+          <a href="programacion2.html">
+            <div class="card">
+              <div class="hover-glow"></div>
+              <div class="card-image">
+                <figure class="image is-4by3">
+                  <img src="Images/Programación II.jpg" alt="Programación 2" />
+                </figure>
+              </div>
+              <div class="card-content">
+                <h3 class="title is-4">Programación II</h3>
+              </div>
+              <footer class="card-footer">
+                <span class="card-footer-item">
+                  <span class="icon">
+                    <i class="fas fa-laptop-code"></i>
+                  </span>
+                  Ver actividades
+                </span>
+              </footer>
+            </div>
+          </a>
+        </div>
       </div>
-    </footer>
-  </body>
+
+      <!-- Action Buttons -->
+      <div class="action-buttons">
+        <a href="https://github.com/Bernard2806/Ejemplos-UTN-FRSN-Programacion1-2021" class="action-btn">
+          <span class="icon">
+            <i class="fas fa-star"></i>
+          </span>
+          <span>Extras</span>
+        </a>
+        <a href="materiales.html" class="action-btn">
+          <span class="icon">
+            <i class="fas fa-book"></i>
+          </span>
+          <span>Materiales</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <div class="footer-logos">
+        <a href="https://www.instagram.com/utnaulachivilcoy/" target="_blank" rel="noopener noreferrer">
+          <img src="Images/Logos/UTN Aula Chivilcoy Logo.jpg" alt="Logo UTN Aula Chivilcoy" class="footer-logo" />
+        </a>
+        <a href="https://www.frsn.utn.edu.ar/" target="_blank" rel="noopener noreferrer">
+          <img src="Images/Logos/UTN FRSN Logo.jpg" alt="Logo UTN FRSN" class="footer-logo" />
+        </a>
+        <a href="https://cuch.gob.ar/" target="_blank" rel="noopener noreferrer">
+          <img src="Images/Logos/CUCH Logo.png" alt="Logo CUCH" class="footer-logo" />
+        </a>
+      </div>
+      <p style="color: var(--text-secondary)">
+        <strong style="color: var(--text-primary)">Actividades de Programación</strong>
+        - Universidad Tecnológica Nacional - Facultad Regional San Nicolás -
+        UTN Aula Chivilcoy
+      </p>
+    </div>
+  </footer>
+</body>
+
 </html>
